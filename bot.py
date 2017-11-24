@@ -73,7 +73,7 @@ def send_news(bot, job):
             'summary': extract_summary(x['summary'], x['link']),
             'images': extract_images(x['summary']),
             'url': x['link'],
-            'published': datetime.datetime.strptime(x['published'], '%a, %d %b %Y %X %z').replace(tzinfo=UTC)
+            'published': datetime.datetime.strptime(x['published'], '%a, %d %b %Y %X %z').astimezone(UTC)
         } for x in feed['entries']]
         entries = [x for x in entries]
         news.extend(entries)
@@ -85,7 +85,7 @@ def send_news(bot, job):
         ),
         key=lambda x: x['published']
     )
-    LAST_TIME = datetime.datetime.now().replace(tzinfo=UTC)
+    LAST_TIME = datetime.datetime.now().astimezone(UTC)
 
     for item in news:
         formatted_item = format_item(item)
