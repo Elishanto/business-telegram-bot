@@ -19,7 +19,7 @@ SOURCES = [
     'https://vkrss.com/{token}/rybakovfond', 'https://vkrss.com/{token}/youngbusiness'
 ]
 UTC = pytz.UTC
-LAST_TIME = datetime.datetime.now().replace(tzinfo=UTC)
+LAST_TIME = datetime.datetime.now().astimezone(UTC)
 TEMPLATE = '<b>{feed_title}</b> on <i>{published}</i>{summary}'
 
 
